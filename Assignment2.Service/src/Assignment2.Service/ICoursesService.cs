@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 
 namespace Assignment2.Service
 {
-    public class Class1
+    public class ICoursesService
     {
-        public Class1()
-        {
-        }
     }
 }

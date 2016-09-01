@@ -7,5 +7,7 @@ namespace Assignment2.Service
 {
     public class ICoursesService
     {
+        List<CourseLiteDTO> GetCoursesBySemester(string semester);
+        // Todo: add more functions
     }
 }

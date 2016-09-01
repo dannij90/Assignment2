@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Assignment2.Models.Models
 {
-    public class CoursesDTO
+    public class CourseLiteDTO
     {
         public int ID { get; set; }
         public string Name { get; set; }

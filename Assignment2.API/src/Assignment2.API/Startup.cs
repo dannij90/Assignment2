@@ -7,17 +7,23 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Assignment2.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Assignment2.API
 {
     public class Startup
     {
+        private string _rootFolder;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            _rootFolder = env.ContentRootPath;
 
             if (env.IsEnvironment("Development"))
             {
@@ -35,9 +41,13 @@ namespace Assignment2.API
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
+            services.AddDbContext<AppDataContext>(options =>
+                options.UseSqlite($"Data Source={_rootFolder}/Courses.db"));
 
             services.AddMvc();
+
+            // Add application services
+            services.AddTransient<ICoursesService, CoursesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

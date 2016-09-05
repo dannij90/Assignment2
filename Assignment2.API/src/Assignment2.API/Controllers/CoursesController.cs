@@ -3,17 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Assignment2.Services;
+using Assignment2.Models.Models;
 
 namespace Assignment2.API.Controllers
 {
-    [Route("api/[controller]")]
-    public class ValuesController : Controller
+    [Route("api/courses")]
+    public class CoursesController : Controller
     {
+        private readonly ICoursesService _service;
+
+        public CoursesController(ICoursesService service)
+        {
+            _service = service;
+        }
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<CourseLiteDTO> GetCoursesOnSemester(string semester = null)
         {
-            return new string[] { "value1", "value2" };
+            return _service.GetCoursesBySemester(semester);
+            /*
+            return new list<CourseLiteDTO>
+            {
+                new CourseLiteDTO
+                {
+                    ID = 1,
+                    Name = "Web Services",
+                    Semester = "20163"
+                }
+            };*/
         }
 
         // GET api/values/5

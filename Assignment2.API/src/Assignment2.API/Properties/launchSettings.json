@@ -19,7 +19,7 @@
     "Assignment2.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/api/values",
+      "launchUrl": "http://localhost:5000/api/courses",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

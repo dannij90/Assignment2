@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Assignment2.Services.Entities;
+
+namespace Assignment2.Services
+{
+    public class AppDataContext : DbContext
+    {
+        public DbSet<Course> Courses { get; set; }
+
+        public AppDataContext(DbContextOptions<AppDataContext> options)
+            : base(options)
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+    }
+}
